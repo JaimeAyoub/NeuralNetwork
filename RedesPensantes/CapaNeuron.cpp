@@ -5,6 +5,10 @@ CapaNeuron::CapaNeuron(int num_neurons)
 {
 }
 
+CapaNeuron::~CapaNeuron()
+{
+}
+
 std::vector<float> CapaNeuron::Feed_Forward(std::vector<float> inputs)
 {
 	std::vector<float> Outputs;
@@ -15,11 +19,3 @@ std::vector<float> CapaNeuron::Feed_Forward(std::vector<float> inputs)
 	return Outputs;
 }
 
-std::vector<float> CapaNeuron::GetOutPuts()
-{
-	/*std::vector<float> Outputs;
-	for (auto N : neuronas)
-	{
-		Outputs.push_back(N.CalcOut(inputs));
-	}*/
-}

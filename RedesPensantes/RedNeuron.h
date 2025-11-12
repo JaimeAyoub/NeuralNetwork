@@ -8,11 +8,18 @@ public:
 	RedNeuron(int numInputs, int numHidden, int numOutputs);
 	~RedNeuron() = default;
 
-	std::vector<CapaNeuron> capaOculta;
-	std::vector<CapaNeuron> capaOutPut;
+	CapaNeuron capaOculta;
+	CapaNeuron capaOutPut;
 	int inputs;
 
-	void InitPesos();
+	void InitPesosToHidden();
+	void InitPesosToOutput();
+
+	std::vector<float> FeedForward(const std::vector<float>& input);
+
+	void Train(const std::vector<float>& input, const std::vector<float>& output);
+
+	float calculateError(float out, float target);
 private:
 };
 

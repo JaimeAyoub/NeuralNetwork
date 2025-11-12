@@ -6,10 +6,10 @@ public:
 	CapaNeuron(int num_neurons);
 	~CapaNeuron();
 
-	std::vector<Neurona> neuronas;
 	std::vector<float> Feed_Forward(std::vector<float>);
-	std::vector<float> GetOutPuts();
+	std::vector<Neurona>& GetNeuronas() { return neuronas; }
 private:
 
+	std::vector<Neurona> neuronas;
 };
 
