@@ -12,6 +12,8 @@ public:
 	std::vector<float>& getPesos() { return weights; }
 
 	std::vector<float> weights;
+
+
 private:
 
 };

@@ -57,7 +57,7 @@ void RedNeuron::Train(const std::vector<float>& input, const std::vector<float>&
 	}
 
 
-	//BackPropagation
+	BackPropagation(input, output);
 
 	std::cout << "Error Total: " << totalError << '\n';
 }
@@ -65,5 +65,26 @@ float RedNeuron::calculateError(float out, float target)
 {
 	float Tmin0 = target - out;
 	return 0.5f * (Tmin0 * Tmin0);
+}
+void RedNeuron::BackPropagation(const std::vector<float>& input, const std::vector<float>& output, float learningRate)
+{
+
+	if(output.empty()) {return; }
+	std::cout << "Peso antes: " << capaOculta.GetNeuronas()[0].getPesos()[0] << '\n';
+	float targetMinusOut = 0.f;
+	float cambioOutconTotal = 0.f;
+	float outPutVal = 0.f;
+	auto hiddenOutputsValues = capaOculta.Feed_Forward(input); //Salida de la capa oculta
+	auto outputsValues = capaOutPut.Feed_Forward(hiddenOutputsValues); //Salida de la capa de salida
+	
+	targetMinusOut = output[0] - outputsValues[0];
+	outPutVal = outputsValues[0];
+	cambioOutconTotal = outPutVal * (1 - outPutVal);
+	float delta = targetMinusOut * cambioOutconTotal * outPutVal;
+	float newWeight = capaOculta.GetNeuronas()[0].getPesos()[0] - (learningRate * delta);
+	capaOculta.GetNeuronas()[0].getPesos()[0] = newWeight;
+	std::cout << "Peso despues: " << capaOculta.GetNeuronas()[0].getPesos()[0] << '\n';
+	
+
 }
  //https://github.com/mattm/simple-neural-network

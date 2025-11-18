@@ -20,6 +20,8 @@ public:
 	void Train(const std::vector<float>& input, const std::vector<float>& output);
 
 	float calculateError(float out, float target);
+
+	void BackPropagation(const std::vector<float>& input, const std::vector<float>& targetOutput, float learningRate = 0.5f);
 private:
 };
 
