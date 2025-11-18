@@ -70,7 +70,17 @@ void RedNeuron::BackPropagation(const std::vector<float>& input, const std::vect
 {
 
 	if(output.empty()) {return; }
-	std::cout << "Peso antes: " << capaOculta.GetNeuronas()[0].getPesos()[0] << '\n';
+
+	for (auto& neuronas : capaOculta.GetNeuronas())
+	{
+		for (auto& w : neuronas.getPesos())
+		{
+	
+			std::cout << "Peso antes: " << w << '\n';
+		}
+	}
+	
+
 	float targetMinusOut = 0.f;
 	float cambioOutconTotal = 0.f;
 	float outPutVal = 0.f;
@@ -81,9 +91,16 @@ void RedNeuron::BackPropagation(const std::vector<float>& input, const std::vect
 	outPutVal = outputsValues[0];
 	cambioOutconTotal = outPutVal * (1 - outPutVal);
 	float delta = targetMinusOut * cambioOutconTotal * outPutVal;
-	float newWeight = capaOculta.GetNeuronas()[0].getPesos()[0] - (learningRate * delta);
-	capaOculta.GetNeuronas()[0].getPesos()[0] = newWeight;
-	std::cout << "Peso despues: " << capaOculta.GetNeuronas()[0].getPesos()[0] << '\n';
+	for (auto& neuronas : capaOculta.GetNeuronas())
+	{
+		for (auto& w : neuronas.getPesos())
+		{
+			float newWeight = w - (learningRate * delta);
+			w = newWeight;
+			std::cout << "Peso despues: " << w << '\n';
+		}
+	}
+
 	
 
 }
